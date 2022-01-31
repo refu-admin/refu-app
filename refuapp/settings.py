@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xvc0m@6s7t@hsdvkbzqd&@(@ce!&#-sb1dfp5qega5^7axsy%7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -155,7 +155,7 @@ AUTHENTICATION_BACKENDS = [
 #SOCIAL_AUTH_TWITTER_KEY = os.environ['TWITTER_CONSUMER_KEY']
 #SOCIAL_AUTH_TWITTER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/user/top' # リダイレクトURL # リダイレクトURL
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/user/top' # リダイレクトURL
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
