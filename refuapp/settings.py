@@ -59,6 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR,'templates')],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,6 +86,7 @@ SOCIAL_AUTH_PIPELINE = [
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
 ]
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -139,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static_for_deploy')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_for_deploy')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   
 
 STATICFILES_DIRS = (
