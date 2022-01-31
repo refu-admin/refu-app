@@ -7,7 +7,7 @@ argon2-cffi-bindings==21.2.0
 arrow==0.13.1
 # asgiref @ file:///tmp/build/80754af9/asgiref_1625643473416/work
 astor==0.8.1
-astroid @ file:///C:/ci/astroid_1628063293445/work
+# astroid @ file:///C:/ci/astroid_1628063293445/work
 async-generator @ file:///home/ktietz/src/ci/async_generator_1611927993394/work
 atomicwrites==1.4.0
 attrs @ file:///tmp/build/80754af9/attrs_1620827162558/work
