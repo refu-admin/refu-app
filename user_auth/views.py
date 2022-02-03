@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from social_django.models import UserSocialAuth
 
+# def top(request):
+#     return render(request, 'user_auth/top.html') 
+
 def index(request):
-    
-    return render(request, 'user_auth/index.html')
+    return render(request, 'user/index.html')
 
 @login_required
 def top_page(request):
