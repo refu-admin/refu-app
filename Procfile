@@ -1,1 +1,1 @@
-web: gunicorn refuapp.wsgi --log-file - > Procfile
+web: gunicorn refu-app.wsgi --log-file - > Procfile
