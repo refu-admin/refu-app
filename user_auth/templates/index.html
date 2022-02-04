@@ -3,9 +3,15 @@
     <title>TOP</title>
 </head>
 <body>
-    <div>
-        <a href="/twitterManager/logout"><button type="button" >ログアウト</button></a>
-    </div>
+
+{% if request.user.is_authenticated %}
+    <p>あなたはログインしています (screen_name: {{ user.access_token.screen_name }})</p>
+    <a href="/logout"><button type="button">ログアウト</button></a>
+{% else %}
+    <p>あなたはログインしていません</p>
+    <button type="button" onclick="location.href='{% url 'social:begin' 'twitter' %}'">Twitterでログイン</button>
+{% endif %}
+
 <div>
     <div>
       <p><b>ScreenName</b>:{{ user.access_token.screen_name }}</p>
