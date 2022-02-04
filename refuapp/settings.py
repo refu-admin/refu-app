@@ -173,3 +173,6 @@ if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
     
+ALLOWED_HOSTS = ['127.0.0.1', 'zawaapp.herokuapp.com']
+ALLOWED_HOSTS = ['*'] #こちらでもokです
+    
