@@ -1,1 +1,1 @@
-"web: gunicorn refuapp.wsgi:application --log-file -" 
+web: gunicorn refuapp.wsgi --log-file -
