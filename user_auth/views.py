@@ -3,6 +3,11 @@ from django.contrib.auth.decorators import login_required
 from social_django.models import UserSocialAuth
 import tweepy
 from django.conf import settings
+from django.http import HttpResponse
+import datetime
+import tweepy
+from django.http import JsonResponse
+import json
 
 def top(request):
     # return render(request, 'user_auth/top.html') 
