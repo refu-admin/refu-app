@@ -86,28 +86,29 @@ SOCIAL_AUTH_PIPELINE = [
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
+    "users.pipeline.set_user_data",
 ]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd1u927h73tl1d3',
-        'USER': 'mjubdwxdbztcsm',
-        'PASSWORD': 'b9587e7c1d4d1c00f64dbd6ec16bd2a318665e4620c5e3c48d1539719ea94ce1',
-        'HOST': 'ec2-54-157-15-228.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         #'NAME': BASE_DIR / 'db.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd1u927h73tl1d3',
+#         'USER': 'mjubdwxdbztcsm',
+#         'PASSWORD': 'b9587e7c1d4d1c00f64dbd6ec16bd2a318665e4620c5e3c48d1539719ea94ce1',
+#         'HOST': 'ec2-54-157-15-228.compute-1.amazonaws.com',
+#         'PORT': '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
@@ -168,12 +169,12 @@ AUTHENTICATION_BACKENDS = [
 #SOCIAL_AUTH_TWITTER_KEY = os.environ['TWITTER_CONSUMER_KEY']
 #SOCIAL_AUTH_TWITTER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/user/top' # リダイレクトURL
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/user/top/' # リダイレクトURL
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+SESSION_COOKIE_SAMESITE = None
 # DEBUG = False
 
 try:
@@ -187,6 +188,7 @@ if not DEBUG:
     SOCIAL_AUTH_TWITTER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
     import django_heroku
     django_heroku.settings(locals())
+ 
     
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']

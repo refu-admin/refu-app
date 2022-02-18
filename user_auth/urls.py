@@ -6,8 +6,8 @@ from . import views
 app_name='user_auth'
 
 urlpatterns=[
-     path('',views.top_page, name = "default"),
-     path('', views.top, name='index'),
+     path('',views.index, name = "default"),
+     # path('', views.top, name='index'),
      path('top/',views.top_page, name="top"), # リダイレクト
      path('login/', # ログイン
      django.contrib.auth.views.LoginView.as_view(template_name = 'user_auth/login.html'),
@@ -15,4 +15,8 @@ urlpatterns=[
      path('logout/', # ログアウト
      django.contrib.auth.views.LogoutView.as_view(template_name = 'user_auth/logout.html'),
      name='logout'),
+     # path('',views.index, name = 'index'),
+     path('login/',views.signin, name = 'signin'),
+     # path('app/',views.app, name = 'app'),
+     path('callback/',views.callback, name = 'callback'),
 ]

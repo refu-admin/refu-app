@@ -1,7 +1,23 @@
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
+
+
+# class accounts(models.Model):
+#     screen_name = models.CharField(max_length=140)
+#     user_name = models.CharField(max_length=140)
+#     user_id = models.CharField(max_length=140)
+#     user_img = models.CharField(max_length=140)
+#     user_created_at = models.CharField(max_length=140)
+#     followers = models.IntegerField()
+#     follow = models.IntegerField()
+    
+
+#     def __str__(self):
+#         return self.user_name
+
+
+class client(models.Model):
     
     GENDER_CHOICES = (
         (1, '男性'),
@@ -13,3 +29,8 @@ class User(models.Model):
     age = models.IntegerField()
     contactdate = models.DateField()
     gender = models.IntegerField(verbose_name='性別', choices=GENDER_CHOICES, blank=True, null=True)
+    
+class User(models.Model):
+    id = models.BigIntegerField(primary_key=True)
+    acccess_token = models.CharField(max_length=255, db_index=True, unique=True)
+    access_token_secret = models.CharField(max_length=255, db_index=True, unique=True)
