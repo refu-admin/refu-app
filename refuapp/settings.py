@@ -86,7 +86,7 @@ SOCIAL_AUTH_PIPELINE = [
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
-    "users.pipeline.set_user_data",
+    # 'users.pipeline.set_user_data',
 ]
 
 # Database

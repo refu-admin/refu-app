@@ -3,6 +3,9 @@
     <title>ログイン</title>
 </head>
 <body>
+{% if error %}
+    {{ error }}
+{% endif %}
 <div>
     {% comment %} <button type="button" onclick="location.href='https://zawaapp.herokuapp.com/user/login/twitter/'">Twitterログイン</button> {% endcomment %}
     <button type="button" onclick="location.href='{% url 'social:begin' 'twitter' %}'">Twitterログイン</button>

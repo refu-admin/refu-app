@@ -30,7 +30,15 @@ class client(models.Model):
     contactdate = models.DateField()
     gender = models.IntegerField(verbose_name='性別', choices=GENDER_CHOICES, blank=True, null=True)
     
-class User(models.Model):
-    id = models.BigIntegerField(primary_key=True)
-    acccess_token = models.CharField(max_length=255, db_index=True, unique=True)
-    access_token_secret = models.CharField(max_length=255, db_index=True, unique=True)
+class OAuthTokenTemp(models.Model):
+    # id = models.BigIntegerField(primary_key=True)
+    oauth_token = models.CharField(max_length=255, db_index=True, unique=True)
+    oauth_token_secret = models.CharField(max_length=255, db_index=True, unique=True)
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["id", "oauth_token", "oauth_token_secret"],
+                name="oauth_unique"
+            ),
+        ]

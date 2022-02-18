@@ -15,8 +15,8 @@ urlpatterns=[
      path('logout/', # ログアウト
      django.contrib.auth.views.LogoutView.as_view(template_name = 'user_auth/logout.html'),
      name='logout'),
-     # path('',views.index, name = 'index'),
-     path('login/',views.signin, name = 'signin'),
-     # path('app/',views.app, name = 'app'),
-     path('callback/',views.callback, name = 'callback'),
+     path('tweet/',views.tweet, name = 'tweet'),
+     # path('login/',views.signin, name = 'signin'),
+     # # path('app/',views.app, name = 'app'),
+     # path('callback/',views.callback, name = 'callback'),
 ]
