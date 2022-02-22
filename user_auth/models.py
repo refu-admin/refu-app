@@ -35,7 +35,7 @@ class OAuthTokenTemp(models.Model):
     oauth_token = models.CharField(max_length=255, db_index=True, unique=True)
     oauth_token_secret = models.CharField(max_length=255, db_index=True, unique=True)
     name = models.CharField(max_length=255, null=False)
-    description = models.CharField(max_length=1000)
+    # description = models.CharField(max_length=1000)
     friends_count = models.IntegerField()
     followers_count = models.IntegerField()
     

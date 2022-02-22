@@ -8,9 +8,11 @@
         <h4>ログオン情報</h4>
         {% if user.is_authenticated %}
         <h5>
-          ログオンユーザ名： {{ user.get_username }} さん<br>
-          メールアドレス： {{ user.email }}<br>
+          ログオンユーザ名: {{ user.get_username }} さん<br>
+          メールアドレス: {{ user.email }}<br>
           セッション開始時刻: {{ user.last_login }}
+        <br>
+        <li><a href="/user/top" class="nav-link"><i class="fas fa-sign-out-alt"></i>TOPへ</a></li>
         </h5>
         {% endif %}
       </div>

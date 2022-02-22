@@ -8,7 +8,7 @@ app_name='user_auth'
 urlpatterns=[
      path('',views.index, name = "default"),
      # path('', views.top, name='index'),
-     path('top/',views.top_page, name="top"), # リダイレクト
+     path('top/',views.Command.handle, name="top"), # リダイレクト
      # path('login/', # ログイン
      # django.contrib.auth.views.LoginView.as_view(template_name = 'user_auth/login.html'),
      # name='login'),
