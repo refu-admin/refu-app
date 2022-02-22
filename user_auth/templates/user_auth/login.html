@@ -3,7 +3,18 @@
     <title>ログイン</title>
 </head>
 <body>
+{% if error %}
+    {{ error }}
+{% endif %}
 <div>
+{% if user.is_authenticated %}
+    <h5>
+    ログオンユーザ名: {{ user.get_username }} さん<br>
+    メールアドレス: {{ user.email }}<br>
+    セッション開始時刻: {{ user.last_login }}
+    </h5>
+{% endif %}
+    {% comment %} <button type="button" onclick="location.href='https://zawaapp.herokuapp.com/user/login/twitter/'">Twitterログイン</button> {% endcomment %}
     <button type="button" onclick="location.href='{% url 'social:begin' 'twitter' %}'">Twitterログイン</button>
 </div>
 </body>

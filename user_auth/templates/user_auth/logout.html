@@ -1,3 +1,6 @@
+{% extends 'user_auth/base.html' %}
+
+{% block content %}
 <html>
 <head>
     <title>ログアウト</title>
@@ -5,11 +8,12 @@
 <body>
 <div>
     <p>
-        ログアウトしました．
+        ログアウトしました
     </p>
     <p>
-        <a href="/user/login"><button type="button" >ログインページへ</button></a>
+        <a href="/accounts/login.html"><button type="button" >ログインページへ</button></a>
     </p>
 </div>
 </body>
 </html>
+{% endblock %}
