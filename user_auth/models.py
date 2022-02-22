@@ -31,14 +31,18 @@ class client(models.Model):
     gender = models.IntegerField(verbose_name='性別', choices=GENDER_CHOICES, blank=True, null=True)
     
 class OAuthTokenTemp(models.Model):
-    # id = models.BigIntegerField(primary_key=True)
+    user_id = models.BigIntegerField(primary_key=True, unique=True)
     oauth_token = models.CharField(max_length=255, db_index=True, unique=True)
     oauth_token_secret = models.CharField(max_length=255, db_index=True, unique=True)
+    name = models.CharField(max_length=255, null=False)
+    description = models.CharField(max_length=1000)
+    friends_count = models.IntegerField()
+    followers_count = models.IntegerField()
     
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["id", "oauth_token", "oauth_token_secret"],
+                fields=["user_id", "oauth_token", "oauth_token_secret"],
                 name="oauth_unique"
             ),
         ]

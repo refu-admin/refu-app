@@ -17,6 +17,12 @@
   <p><b>OAuthToken</b>:{{ user.access_token.oauth_token }}</p>
   <p><b>AuthTime</b>:{{ user.extra_data.auth_time }}</p>
   
+  <ul>
+  {% for tweet in timeline %}
+  <li>@{{ tweet.user.screen_name }}: {{ tweet.text }}</li>
+  {% endfor %}
+  </ul>
+
 </div>
 <!-- login info end -->
 
@@ -34,7 +40,7 @@
            <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>フォロワー数 : {{ follower }} </h3>
+            <h3>フォロワー数 : {{ OAuthTokenTemp.followers_count }} </h3>
               <p>Follower</p>
           </div>
           <div class="icon">
@@ -50,7 +56,7 @@
            <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>フォロー数 : {{ follow }}</h3>
+            <h3>フォロー数 : {{ OAuthTokenTemp.friends_count }}</h3>
               <p>Follow</p>
           </div>
           <div class="icon">
@@ -66,7 +72,7 @@
            <!-- small box -->
         <div class="small-box bg-secondary">
           <div class="inner">
-            <h3>FF比 : {{ api.friends_count }}%</h3>
+            <h3>FF比 : {{ OAuthTokenTemp.friends_count }}%</h3>
               <p>FF ratio</p>
           </div>
           <div class="icon">

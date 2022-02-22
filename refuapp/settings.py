@@ -17,7 +17,6 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -39,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitter',
     'bootstrap4',
     'social_django',
     'user_auth',
@@ -52,15 +56,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
-]
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+    ]
 
 ROOT_URLCONF = 'refuapp.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,6 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_for_deploy')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')   
 
@@ -164,18 +171,31 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 AUTHENTICATION_BACKENDS = [
      'social_core.backends.twitter.TwitterOAuth',
      'django.contrib.auth.backends.ModelBackend',
+     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 #SOCIAL_AUTH_TWITTER_KEY = os.environ['TWITTER_CONSUMER_KEY']
 #SOCIAL_AUTH_TWITTER_SECRET = os.environ['TWITTER_CONSUMER_SECRET']
-
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/user/top/' # リダイレクトURL
+# SOCIAL_AUTH_JSONFIELD_ENABLED = True
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/user/top/' # リダイレクトURL
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_COOKIE_SAMESITE = None
+
 # DEBUG = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'   
+ACCOUNT_USERNAME_REQUIRED = False
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = '/accounts/login/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ 
+# ACCOUNT_EMAIL_VARIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
 
 try:
     from refuapp.local_settings import *
