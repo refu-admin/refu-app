@@ -51,15 +51,15 @@
         <a href="#" class="nav-link">Schedule</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{% url 'user_auth:tweet' %}" class="nav-link">ツイート</a>
+        <a href="#" class="nav-link">ツイート</a>
       </li>
       </li>
     </ul>
       
     <ul class="navbar-nav ml-auto">
     {% if request.user.is_authenticated %}
-      <li><a class="nav-link">ユーザ名 : {{ user.access_token.screen_name }} さん</a></li>     
-      <li><a href="user_auth/logout.html" class="nav-link"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>
+      <li><a class="nav-link">ユーザ名 : {{ user_name }} さん</a></li>     
+      <li><a href="\account\login.html" class="nav-link"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>
     {% endif %}
     </ul>
    </nav>
@@ -77,13 +77,12 @@
      <div class="sidebar">
        <!-- Sidebar user panel (optional) -->
        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-         <div class="image">
-           
-           {% comment %} <img src="{% static 'AdminLTE-master/AdminLTE-master/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image"> {% endcomment %}
-         </div>
-         <div class="info">
-           <a href="#" class="d-block">{{ user.access_token.screen_name }}</a>
-         </div>
+        <div class="image">
+          <img src="{{ image }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{ user_name }}</a>
+        </div>
        </div>
   
        <!-- SidebarSearch Form -->
@@ -358,26 +357,6 @@
                </p>
              </a>
            </li>
-
-           <li class="nav-header">LABELS</li>
-           <li class="nav-item">
-             <a href="#" class="nav-link">
-               <i class="nav-icon far fa-circle text-danger"></i>
-               <p class="text">Important</p>
-             </a>
-           </li>
-           <li class="nav-item">
-             <a href="#" class="nav-link">
-               <i class="nav-icon far fa-circle text-warning"></i>
-               <p>Warning</p>
-             </a>
-           </li>
-           <li class="nav-item">
-             <a href="#" class="nav-link">
-               <i class="nav-icon far fa-circle text-info"></i>
-               <p>Informational</p>
-             </a>
-           </li>
          </ul>
        </nav>
        <!-- /.sidebar-menu -->
@@ -416,7 +395,7 @@
      <strong>Copyright &copy; 2022 <a href="https://adminlte.io">Refu Co.</a>.</strong>
      All rights reserved.
      <div class="float-right d-none d-sm-inline-block">
-       <b>Version</b> 0.1.0
+       <b>Version</b> 0.0.1
      </div>
 </footer>
   

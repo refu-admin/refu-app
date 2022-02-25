@@ -15,7 +15,7 @@ from django.db import models
 
 #     def __str__(self):
 #         return self.user_name
-
+# class User(AbstractUser):
 
 class client(models.Model):
     

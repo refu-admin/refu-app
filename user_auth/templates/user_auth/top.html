@@ -1,37 +1,20 @@
 {% extends './base.html' %}
 {% block content %}
 
-<!-- login info -->
-<div>
-{% if request.user.is_authenticated %}
-  <p>あなたはログインしています (screen_name: {{ user.access_token.screen_name }})</p>
-
-{% else %}
-  <p>あなたはログインしていません</p>
-{% endif %}
-  
-  <p><b>ScreenName</b>:{{ user.access_token.screen_name }}</p>
-  <p><b>UserId</b>:{{ user.access_token.user_id }}</p>
-  <p><b>UserName</b>:{{ user.access_token.oauth_user_name }}</p>
-  <p><b>OAuthTokenSecret</b>:{{ user.access_token.oauth_token_secret }}</p>
-  <p><b>OAuthToken</b>:{{ user.access_token.oauth_token }}</p>
-  <p><b>AuthTime</b>:{{ user.extra_data.auth_time }}</p>
-  
-  <ul>
-  {% for tweet in timeline %}
-  <li>@{{ tweet.user.screen_name }}: {{ tweet.text }}</li>
-  {% endfor %}
-  </ul>
-
-</div>
-<!-- login info end -->
-
 <!-- Main content -->
 <section class="content">
 
   <!-- container -->
   <div class="container-fluid">
-    
+    <!-- login info -->
+    <div>
+    {% if request.user.is_authenticated %}
+      <p>あなたはログインしています (screen_name: @{{ screen_name }})</p>
+    {% else %}
+      <p>あなたはログインしていません</p>
+    {% endif %}
+    </div>
+
     <!-- Small boxes (Stat box) -->
     <div class="row">
       
@@ -40,7 +23,7 @@
            <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>フォロワー数 : {{ OAuthTokenTemp.followers_count }} </h3>
+            <h3>フォロワー数 : {{ followers_count }} </h3>
               <p>Follower</p>
           </div>
           <div class="icon">
@@ -56,7 +39,7 @@
            <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>フォロー数 : {{ OAuthTokenTemp.friends_count }}</h3>
+            <h3>フォロー数 : {{ friends_count }}</h3>
               <p>Follow</p>
           </div>
           <div class="icon">
@@ -72,7 +55,7 @@
            <!-- small box -->
         <div class="small-box bg-secondary">
           <div class="inner">
-            <h3>FF比 : {{ OAuthTokenTemp.friends_count }}%</h3>
+            <h3 maxlemgth="3">FF比 : {{ FFrate }}%</h3>
               <p>FF ratio</p>
           </div>
           <div class="icon">
@@ -85,7 +68,7 @@
       <!-- ./col -->
       
       <!-- New Follower counter -->
-      <div class="col-lg-3 col-6">
+      {% comment %} <div class="col-lg-3 col-6">
            <!-- small box -->
           <div class="small-box bg-danger">
             <div class="inner">
@@ -97,11 +80,17 @@
             </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-      </div>
+      </div> {% endcomment %}
       <!-- ./col -->
     
     </div>
     <!-- Small boxes end (Stat box) -->
+    <form action="post">
+      {% csrf_token %}
+      <input type="text" name="keyword">
+      <button type="button" name="start_button">開始する</button>
+      <button type="button" name="finish_button">終了する</button>
+    </form>
 
   </div>
   <!-- container end -->
