@@ -1,14 +1,11 @@
-from contextlib import ExitStack
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from pandas import describe_option
-from paramiko import AuthenticationException
-from social_django.models import UserSocialAuth
+
 from django.conf import settings
 import tweepy
 import json
 import twitter
+import time
 import logging
 
 from django.core.management.base import BaseCommand
@@ -100,16 +97,19 @@ class Top_page_View(LoginRequiredMixin, ListView):
         user_id='1417357878080331777'
         user = api.get_user(user_id = user_id)
         
+                        
         context = {
             "screen_name" : user.screen_name,
             "user_name" : user.name,
             "user_id" : user.id_str,
             "followers_count" : user.followers_count,
             "friends_count" : user.friends_count,
+            "FFrate": int(user.followers_count/user.friends_count*100),
             "image" : user.profile_image_url, 
         }
         
         return context
+
     
 class Base_page_View(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
@@ -164,46 +164,3 @@ class Base_page_View(LoginRequiredMixin, ListView):
     #     else:
     #         qs = OAuthTokenTemp.objects.none()
     #     return qs
-    
-    
-#     def post(self, request):
-#            pass
-#     def get(self, request):
-#        return render(request,'user_auth/top.html')
-   
-#     def user_info(self, *args, **options):
-#         # user_oauth_token = SocialAccount.extra_data['access_token']['oauth_token']
-#         # user_oauth_token_secret = SocialAccount.extra_data['access_token']['oauth_token_secret']
-#         # auth = tweepy.OAuthHandler( consumer_key, consumer_secret)
-#         # auth.set_access_token(user_oauth_token, user_oauth_token_secret)
-        
-#         # sample
-        
-#         # ユーザプロフィール取得
-#         # try :
-#         #     profile = api.get_user(id='user name')
-    
-#     #ユーザプロフィール取得
-#         try:
-#             access_key = "1417357878080331777-McGsmY3Hzq87TXXg9cWBXQMAUMbfdU"
-#             access_secret = "CmCgkbFSijdZVAJIuspgbJ9t2CQbotrMujfn9Bz3RQD8l"
-#             auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-#             auth.set_access_token(access_key, access_secret)
-#             api = tweepy.API(auth)
-#             profile = api.get_user(id=SocialAccount.extra_data['id']['user_id'])
-#             oauth = OAuthTokenTemp(
-#                 user_id = '1417357878080331777', #uid
-#                 name = profile.screen_name, #アカウント名 @*
-#                 # image = profile.profile_image_url, #アイコン画像のURL
-#                 # tweet_count = profile.statuses_count, #ツイート数
-#                 friends_count = profile.friends_count, #フォロー数
-#                 followers_count = profile.followers_count, #フォロワー数
-#                 # description = profile.describe_option, #profile info
-#             )
-#             oauth.save()
-            
-#         except tweepy.TweepError:
-#             print ('Error! Failed to get request token.')
-#         return render(self,'user_auth/top.html', {'user':user})
-
-# # toppage_dataanalyze = Top_page_View.as_view()

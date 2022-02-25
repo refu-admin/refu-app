@@ -1,16 +1,6 @@
 {% extends './base.html' %}
 {% block content %}
 
-
-
-{% comment %} <div>
-  <p><b>ScreenName</b>:@{{ screen_name }}</p>
-  <p><b>UserId</b>:{{ user_id }}</p>
-  <p><b>UserName</b>:{{ user_name }}</p>
-  <p><b>{{image}}</b></p>
-</div> {% endcomment %}
-<!-- login info end -->
-
 <!-- Main content -->
 <section class="content">
 
@@ -19,21 +9,12 @@
     <!-- login info -->
     <div>
     {% if request.user.is_authenticated %}
-      <p>あなたはログインしています (screen_name: {{ screen_name }})</p>
-  
+      <p>あなたはログインしています (screen_name: @{{ screen_name }})</p>
     {% else %}
       <p>あなたはログインしていません</p>
     {% endif %}
     </div>
-    <div class="col-5 row my-2 border bg-light d-flex align-items-center" style="height:100px; width:500px;">
-      <div class="col-2 container-light">
-        <img src="{{ image }}" alt="">
-      </div>
-      <div class="col-3">
-        <p>@{{ screen_name }}</p>
-        <h3>{{ user_name }}</h3>
-      </div>
-    </div>
+
     <!-- Small boxes (Stat box) -->
     <div class="row">
       
@@ -74,7 +55,7 @@
            <!-- small box -->
         <div class="small-box bg-secondary">
           <div class="inner">
-            <h3>FF比 : {{ OAuthTokenTemp.friends_count }}%</h3>
+            <h3 maxlemgth="3">FF比 : {{ FFrate }}%</h3>
               <p>FF ratio</p>
           </div>
           <div class="icon">
@@ -104,6 +85,12 @@
     
     </div>
     <!-- Small boxes end (Stat box) -->
+    <form action="post">
+      {% csrf_token %}
+      <input type="text" name="keyword">
+      <button type="button" name="start_button">開始する</button>
+      <button type="button" name="finish_button">終了する</button>
+    </form>
 
   </div>
   <!-- container end -->
